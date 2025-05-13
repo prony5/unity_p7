@@ -65,4 +65,4 @@ Add to your `Packages/manifest.json`:
 
 ## Troubleshooting
 
-Read `Docs/P7.pdf`
+[📄 Read P7.pdf](/Docs/P7.pdf)
