@@ -1,0 +1,47 @@
+# Unity generated files
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+
+# IDE specific
+.vs/
+.vscode/
+.idea/
+*.userprefs
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Package development files
+**/*.orig
+**/*.bak
+**/*.tmp
+
+# P7 Logger specific (исключаем бинарные файлы, но можно добавить примеры конфигов)
+*.pdb
+*.exp
+*.lib
+*.dll
+*.so
+*.a
+
+/settings/
+/config/
+/local-test-config.json
+
+/docs-output/
+/Scripts/AutoDoc/
+
+/test-data/
+/benchmark-results/
+
+/artifacts/
+/.ci/
+*.nupkg

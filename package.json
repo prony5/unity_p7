@@ -1,0 +1,41 @@
+{
+  "name": "com.prony5.unity.p7",
+  "version": "0.1.1",
+  "displayName": "P7 Logger Integration",
+  "description": "Professional P7 Baical logging system integration for Unity with network streaming and local fallback support",
+  "unity": "2019.4",
+  "documentationUrl": "https://github.com/prony5/unity_p7/README.md",
+  "keywords": [
+    "unity",
+    "logging",
+    "p7",
+    "baical",
+    "analytics",
+    "diagnostics",
+    "network"
+  ],
+  "author": {
+    "name": "Prony5",
+    "email": "prony5@yandex.ru",
+    "url": "https://github.com/prony5/unity_p7"
+  },
+  "dependencies": {},
+  "samples": [
+    {
+      "displayName": "Basic Integration",
+      "description": "Demonstrates basic P7 logger setup and usage",
+      "path": "Samples~/Demo"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prony5/unity_p7.git"
+  },
+  "publishConfig": {},
+  "type": "library",
+  "hideInEditor": false,
+  "platforms": {
+    "win64": "P7 Windows x64 support",
+    "linux64": "P7 Linux support"
+  }
+}
