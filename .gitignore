@@ -28,8 +28,6 @@ Thumbs.db
 *.pdb
 *.exp
 *.lib
-*.dll
-*.so
 *.a
 
 /settings/
