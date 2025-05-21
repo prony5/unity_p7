@@ -239,9 +239,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 527651374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ce058485a408013a03c8eb99214eb6, type: 3}
+  m_Script: {fileID: 11500000, guid: e5b669c5d3297ab43a141435caf766f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  telemetry: {fileID: 527651382}
+  moveSpeed: 2
+  rotationSpeed: 5
+  sphereRadius: 5
 --- !u!114 &527651381
 MonoBehaviour:
   m_ObjectHideFlags: 0

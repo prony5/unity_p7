@@ -22,6 +22,7 @@ namespace P7
         #endregion
 
         private API.Client __client = null;
+        private API.Traces __trace = null;
         private List<API.Telemetry> _telemetries = new List<API.Telemetry>();
 
         private void Awake()
@@ -29,6 +30,10 @@ namespace P7
             try
             {
                 __client = new API.Client(init_params);
+                __trace = new API.Traces(__client, "Debug");
+                
+                Application.logMessageReceived += HandleLog;
+                Debug.Log("Hello from P7 logger from Unity!");
             }
             catch (Exception ex)
             {
@@ -45,17 +50,48 @@ namespace P7
                 lock (this)
                 {
                     foreach (var t in _telemetries)
-                    {
-                        if (t != null)
-                            t.Release();
-                    }
+                        t?.Release();
 
                     _telemetries.Clear();
                 }
 
-                __client.Release();
-                __client = null;
+                try
+                {
+                    __trace?.Release();
+                }
+                finally
+                {
+                    Application.logMessageReceived -= HandleLog;
+                    __trace = null;
+                }
+
+                try
+                {
+                    __client?.Release();
+                }
+                finally
+                {
+                    __client = null;
+                }
             }
+        }
+
+        private void HandleLog(string logString, string stackTrace, LogType type)
+        {
+            if (__trace is null)
+                return;
+
+            API.Traces.Level level;
+            switch (type)
+            {
+                case LogType.Log: level = API.Traces.Level.INFO; break;
+                case LogType.Warning: level = API.Traces.Level.WARNING; break;
+                case LogType.Error: level = API.Traces.Level.ERROR; break;
+                case LogType.Exception: level = API.Traces.Level.CRITICAL; break;
+                default: level = API.Traces.Level.DEBUG; break;
+            }
+
+            __trace?.Add(0, level, IntPtr.Zero, 0, logString );
         }
 
         private ulong GetUnityTimeStamp(IntPtr i_pContext)
