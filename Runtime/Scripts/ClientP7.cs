@@ -33,6 +33,7 @@ namespace P7
                 __trace = new API.Traces(__client, "Debug");
                 
                 Application.logMessageReceived += HandleLog;
+                Application.logMessageReceivedThreaded += HandleLog;
                 Debug.Log("Hello from P7 logger from Unity!");
             }
             catch (Exception ex)
@@ -62,6 +63,7 @@ namespace P7
                 finally
                 {
                     Application.logMessageReceived -= HandleLog;
+                    Application.logMessageReceivedThreaded -= HandleLog;
                     __trace = null;
                 }
 
