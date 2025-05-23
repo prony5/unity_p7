@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace P7
@@ -38,6 +39,7 @@ namespace P7
 
         private API.Telemetry _telemetry = null;
         private List<Counter> _counters = new List<Counter>();
+        private Dictionary<string, ushort> _countersKey = new Dictionary<string, ushort>();
 
         private void Awake()
         {
@@ -71,6 +73,17 @@ namespace P7
                 }
             }
         }
+        
+        public Counter this[string index]
+        {
+            get
+            {
+                lock (_counters)
+                {
+                    return _counters[_countersKey[index]];
+                }
+            }
+        }
 
         /// <summary>
         /// 
@@ -98,6 +111,7 @@ namespace P7
                 lock (_counters)
                 {
                     _counters.Add(new Counter(this, value, counter_id));
+                    _countersKey.Add(value.name, counter_id);
                     return _counters.Count - 1;
                 }
             }
