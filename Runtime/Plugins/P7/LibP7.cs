@@ -61,10 +61,10 @@ namespace P7.API
     /// </summary>
     internal static class Dll
     {
-        public const string DLL_NAME = "p7-shared.dll";
+        public const string DLL_NAME = "p7-shared";
 
 #if UNITY_STANDALONE_WIN
-        internal const  UnmanagedType StringType = Dll.StringType;
+        internal const UnmanagedType StringType = UnmanagedType.LPWStr;
 #else
         internal const UnmanagedType StringType = UnmanagedType.LPUTF8Str;
 #endif
