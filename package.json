@@ -1,6 +1,6 @@
 {
   "name": "com.prony5.unity.p7",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "displayName": "P7 Logger Integration",
   "description": "Professional P7 Baical logging system integration for Unity with network streaming and local fallback support",
   "unity": "2019.4",
