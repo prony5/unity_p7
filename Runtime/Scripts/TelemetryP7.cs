@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
 
 namespace P7
@@ -43,9 +43,7 @@ namespace P7
 
         private void Awake()
         {
-            _telemetry = client?.TelemetryAdd(id, timeType);
-            foreach (var c in values)
-                CounterAdd(c);
+            SetClient(client);
         }
 
         private void OnApplicationQuit()
@@ -61,6 +59,28 @@ namespace P7
             }
         }
 
+        public void SetClient(Client value)
+        {
+            lock (this)
+            {
+                if (client)
+                {
+                    _counters.Clear();
+                    _countersKey.Clear();
+                    client.TelemetryDel(_telemetry);
+                    _telemetry = null;
+                }
+                client = value;
+            }
+
+            if (client)
+            {
+                _telemetry = client?.TelemetryAdd(id, timeType);
+                foreach (var c in values)
+                    CounterAdd(c);
+            }
+        }
+
         public bool Disposed { get; private set; } = false;
 
         public Counter this[int index]
@@ -69,18 +89,24 @@ namespace P7
             {
                 lock (_counters)
                 {
-                    return _counters[index];
+                    if (index < 0 || index >= _counters.Count)
+                        return null;
+                    else
+                        return _counters[index];
                 }
             }
         }
-        
+
         public Counter this[string index]
         {
             get
             {
                 lock (_counters)
                 {
-                    return _counters[_countersKey[index]];
+                    if (_countersKey.ContainsKey(index))
+                        return _counters[_countersKey[index]];
+                    else
+                        return null;
                 }
             }
         }
@@ -105,6 +131,9 @@ namespace P7
         /// <param name="value"></param>
         public int CounterAdd(CounterSettings value)
         {
+            if (_telemetry == null)
+                return -1;
+
             ushort counter_id = 0;
             if (_telemetry.Create(value.name, value.min, value.a_min, value.max, value.a_max, value.enabled ? 1 : 0, ref counter_id))
             {
