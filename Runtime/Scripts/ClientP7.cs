@@ -30,7 +30,7 @@ namespace P7
             try
             {
                 __client = new API.Client(init_params);
-                __trace = new API.Traces(__client, "Debug");
+                __trace = new API.Traces(__client, "Console");
 
                 Application.logMessageReceivedThreaded += HandleLog;
                 Debug.Log("Hello from P7 logger from Unity!");
