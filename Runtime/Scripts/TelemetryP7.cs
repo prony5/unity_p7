@@ -43,7 +43,7 @@ namespace P7
 
         private void Awake()
         {
-            setClient(client);
+            SetClient(client);
         }
 
         private void OnApplicationQuit()
@@ -61,6 +61,9 @@ namespace P7
 
         public void SetClient(Client value)
         {
+            if (client == value)
+                return;
+
             lock (this)
             {
                 if (client)
