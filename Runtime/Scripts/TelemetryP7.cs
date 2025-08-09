@@ -41,9 +41,22 @@ namespace P7
         private List<Counter> _counters = new List<Counter>();
         private Dictionary<string, ushort> _countersKey = new Dictionary<string, ushort>();
 
+
+        public void setClient(Client client)
+        {
+            if (client is null)
+                return;
+
+            this.client = client;
+
+            _telemetry = this.client.TelemetryAdd(id, timeType);
+            foreach (var c in values)
+                CounterAdd(c);
+        }
+
         private void Awake()
         {
-            SetClient(client);
+            setClient(client);
         }
 
         private void OnApplicationQuit()
