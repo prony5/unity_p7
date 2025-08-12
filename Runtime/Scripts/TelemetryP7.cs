@@ -61,9 +61,6 @@ namespace P7
 
         public void SetClient(Client value)
         {
-            if (client == value)
-                return;
-
             lock (this)
             {
                 if (client)

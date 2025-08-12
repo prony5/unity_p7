@@ -24,7 +24,7 @@ A lightweight Unity package that provides seamless integration with the [P7 Baic
 Add to your `Packages/manifest.json`:
 ```json
 "dependencies": {
-  "com.prony5.p7logger": "https://github.com/prony5/unity_p7.git"
+  "com.prony5.unity.p7": "https://github.com/prony5/unity_p7.git"
 }
 ```
 
